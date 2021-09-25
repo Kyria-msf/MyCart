@@ -67,6 +67,7 @@ php artisan serve
 POST `/api/register` Register to the API application
 
 Request parameters: {name:string, email:string, password:string, confirm_password:string}
+
 Example response:
 
 ```
@@ -85,6 +86,7 @@ Example response:
 POST `/api/login` Login to the API application
 
 Request parameters: {email:string, password:string}
+
 Example response:
 
 ```
@@ -105,6 +107,7 @@ Example response:
 GET `\api\carts` Fetches all available carts
 
 Request parameters: none
+
 Example response:
 
 ```
@@ -124,6 +127,7 @@ Example response:
 GET `/api/carts/<cart_id>` Fetches a specific cart
 
 Request arguments: cart_id:int
+
 Example response:
 
 ```
@@ -142,6 +146,7 @@ Example response:
 DELETE `/api/carts/<cart_id>` Delete an existing cart from the repository of available carts
 
 Request arguments: cart_id:int
+
 Example response:
 
 ```
@@ -154,6 +159,7 @@ Example response:
 POST `/api/carts` Add a new cart to the repository of available carts
 
 Request body: {name:string, slug:string, description:string, price:decimal}
+
 Example response:
 
 ```
@@ -167,6 +173,7 @@ Example response:
 PUT `/api/carts/<cart_id>` modify an existing cart to the repository of available carts
 
 Request body: {name:string, slug:string, description:string, price:decimal}
+
 Example response:
 
 ```
