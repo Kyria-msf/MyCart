@@ -1,10 +1,10 @@
-# Backend -  Cart Systems API Project
+# Backend -  Cart System API Project
 
 ## Introduction
 This is a Cart Systems API that will help to authenticate different users by giving them a unique key or token to access the system.
 The user will be able to perform the CRUD functionalities which are Create, Read, Update, Delete.
 And a loging system will be implemented in order to allow only registered user to perfom certains tasks.
-Every time a user login a token or key will be generated automatically to verify the authenticity. 
+Every time a user log into the system a token or key will be generated automatically to verify the authenticity. 
 
 
 ## Tech Stac(Dependencies)
