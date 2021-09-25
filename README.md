@@ -23,9 +23,9 @@ Every time a user login a token or key will be generated automatically to verify
 |     | ├── Exceptions
 |     | ├── Http
 |     |       | ├── Controllers
-|     |                 |     | ├── **AuthController**.php \*\*\_ authentication.
+|     |                 |     | ├── **AuthController**.php \*\*\_ authentication
 |     |       |         |     | ├── Controller.php
-|     |       |         |     | ├── **ProductController**.php  \*\*\_ CRUD functionalities.
+|     |       |         |     | ├── **CartController**.php  \*\*\_ CRUD functionalities.
 |     | ├── Models
 ├──Bootstrap 
 ├── database
@@ -62,7 +62,47 @@ php artisan serve
 
 ## API
 
-GET `\products` Fetches all available products
+### LOGIN
+
+POST `/api/register` Register to the API application
+
+Request parameters: {name:string, email:string, password:string, confirm_password:string}
+Example response:
+
+```
+{
+    "user": {
+        "name": "Fatuma",
+        "email": "fatuma@gmail.com",
+        "updated_at": "2021-09-25T15:53:02.000000Z",
+        "created_at": "2021-09-25T15:53:02.000000Z",
+        "id": 3
+    },
+    "token": "9|8kNcxk7fip9V00I80PKoeZDbg0oApinnUsddBPpv"
+}
+```
+
+POST `/api/login` Login to the API application
+
+Request parameters: {email:string, password:string}
+Example response:
+
+```
+{
+    "user": {
+        "id": 2,
+        "name": "Kyria",
+        "email": "kyria@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2021-09-25T08:40:18.000000Z",
+        "updated_at": "2021-09-25T08:40:18.000000Z"
+    },
+    "token": "8|PB5MrH5cwo7SvWoi8qBvWjUq5lGVnA77NAsIhcRg"
+}
+```
+### CRUD (Create, Read, Update, Delete)
+
+GET `\api\carts` Fetches all available carts
 
 Request parameters: none
 Example response:
@@ -71,9 +111,9 @@ Example response:
 {
    {
         "id": 1,
-        "name": "Product One",
-        "slug": "product-one",
-        "description": "This is product one",
+        "name": "Cart One",
+        "slug": "cart-one",
+        "description": "This is cart one",
         "price": "899.99",
         "created_at": "2021-09-24T19:52:06.000000Z",
         "updated_at": "2021-09-24T20:44:23.000000Z"
@@ -81,16 +121,17 @@ Example response:
 }
 ```
 
-GET `/products/<id>` Fetches a specific product
+GET `/api/carts/<cart_id>` Fetches a specific cart
 
+Request arguments: cart_id:int
 Example response:
 
 ```
  {
     "id": 2,
-    "name": "Product Two",
-    "slug": "product-two",
-    "description": "This is product two",
+    "name": "Cart Two",
+    "slug": "cart-two",
+    "description": "This is cart two",
     "price": "499.99",
     "created_at": "2021-09-24T20:18:33.000000Z",
     "updated_at": "2021-09-24T20:18:33.000000Z"
@@ -98,9 +139,9 @@ Example response:
 
 ```
 
-DELETE `/products/<id>` Delete an existing product from the repository of available products
+DELETE `/api/carts/<cart_id>` Delete an existing cart from the repository of available carts
 
-Request arguments: id:int
+Request arguments: cart_id:int
 Example response:
 
 ```
@@ -110,7 +151,7 @@ Example response:
 }
 ```
 
-POST `/products` Add a new product to the repository of available products
+POST `/api/carts` Add a new cart to the repository of available carts
 
 Request body: {name:string, slug:string, description:string, price:decimal}
 Example response:
@@ -123,7 +164,7 @@ Example response:
 
 ```
 
-PUT `/products/<id>` modify an existing product to the repository of available products
+PUT `/api/carts/<cart_id>` modify an existing cart to the repository of available carts
 
 Request body: {name:string, slug:string, description:string, price:decimal}
 Example response:
@@ -132,9 +173,9 @@ Example response:
 {
     "updated": {
         "id": 4,
-        "name": "Product fOUR",
-        "slug": "product-two",
-        "description": "This is product two",
+        "name": "Cart fOUR",
+        "slug": "cart-two",
+        "description": "This is cart two",
         "price": "499.99",
         "created_at": "2021-09-24T22:37:49.000000Z",
         "updated_at": "2021-09-25T11:06:08.000000Z"
@@ -142,6 +183,20 @@ Example response:
     "success": true
 }
 
+
+### LOGGING OUT
+
 ```
 
+LOGOUT `/api/<logout>` logging out of the API application
+
+Example response:
+
+```
+{
+        "message": "Logged out",
+     
+},
+
+```
 
