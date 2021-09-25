@@ -18,20 +18,38 @@ Every time a user login a token or key will be generated automatically to verify
 ```
 
 ├── README.md
-├── [backend]
-| ├── flaskr
-| | ├── **init**.py \*\*\_ the main driver of the app.
-| |  
-| ├── models.py
-| ├── README.md
-| ├── requirements.txt
-| ├── test_flaskr.py
-| ├── trivia.psql
-| |**\_
-├── [frontend]
+├── app
+|     | ├── Console
+|     | ├── Exceptions
+|     | ├── Http
+|     |       | ├── Controllers
+|     |                 |     | ├── **AuthController**.php \*\*\_ the main driver of the app.
+|     |       |         |     | ├── Controller.php
+|     |       |         |     | ├── **ProductController**.php  \*\*\_ the main driver of the app.
+|     | ├── Models
+├──Bootstrap 
+├── database
+|     ├── migrations
 ├── public
-├── src
+├── resources
+├── routes
+|     | ├── **api.php**.py \*\*\_ the main driver of the app.
+├── tests
+├── vendor
+├──.editorconfig
+├──.env
+├──.env.example 
+├── .gitattributes
+├── .gitignore
+├── .styleci.yml
+├── artisan
+├── composer.json
+├── composer.lock
+├── package.json
+├── phpunit.xml
 ├── README.md
+├──server.php
+├──webpack.mix.js
 |**
 ```
 
@@ -63,7 +81,7 @@ Example response:
 }
 ```
 
-GET `/products/<product_id>` Fetches a specific product
+GET `/products/<id>` Fetches a specific product
 
 Example response:
 
@@ -80,27 +98,50 @@ Example response:
 
 ```
 
-DELETE `/products/<product_id>` Delete an existing product from the repository of available products
+DELETE `/products/<id>` Delete an existing product from the repository of available products
 
-Request arguments: question_id:int
+Request arguments: id:int
 Example response:
 
 ```
 {
-  "deleted": "28",
-  "success": true
+    "deleted": 1,
+    "success": true
 }
 ```
 
 POST `/products` Add a new product to the repository of available products
 
-Request body: {question:string, answer:string, difficulty:int, category:string}
+Request body: {name:string, slug:string, description:string, price:decimal}
 Example response:
 
 ```
 {
-  "created": 29,
+  "created": 3,
   "success": true
 }
 
 ```
+
+PUT `/products/<id>` modify an existing product to the repository of available products
+
+Request body: {name:string, slug:string, description:string, price:decimal}
+Example response:
+
+```
+{
+    "updated": {
+        "id": 4,
+        "name": "Product fOUR",
+        "slug": "product-two",
+        "description": "This is product two",
+        "price": "499.99",
+        "created_at": "2021-09-24T22:37:49.000000Z",
+        "updated_at": "2021-09-25T11:06:08.000000Z"
+    },
+    "success": true
+}
+
+```
+
+
