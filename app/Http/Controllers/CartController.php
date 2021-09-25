@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        return Product::all();
+        return Cart::all();
     }
 
     /**
@@ -26,14 +24,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+          $request->validate([
             'name' => 'required',
             'slug' =>'required',
             'price' => 'required'
         ]);
 
-        return Product::create($request->all());
-
+        return Cart::create($request->all());
     }
 
     /**
@@ -44,7 +41,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+        return Cart::find($id);
     }
 
     /**
@@ -56,9 +53,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        return $product;
+        $cart = Cart::find($id);
+        $cart->update($request->all());
+         $response = [
+            'updated' => $cart,
+            'success' => true
+        ];
+        return response($response);
     }
 
     /**
@@ -69,6 +70,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+         $cart = Cart::destroy($id);
+
+        $response = [
+            'deleted' => $cart,
+            'success' => true
+        ];
+        return response($response);
     }
 }

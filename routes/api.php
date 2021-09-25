@@ -1,9 +1,11 @@
 <?php
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 //use App\Models\Product;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +23,20 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::post('/login',[AuthController::class, 'login']);
 Route::post('/register',[AuthController::class, 'register']);
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
+
+
+Route::get('/carts', [CartController::class, 'index']);
+Route::get('/carts/{cart_id}', [CartController::class, 'show']);
+
 
  // Protected routes
 Route::group(['middleware'=> ['auth:sanctum']], function(){
-    Route::post('/products',[ProductController::class, 'store']);
-    Route::put('/products',[ProductController::class, 'update']);
-    Route::delete('/products/{id}',[ProductController::class, 'destroy']);
+  
     Route::post('/logout',[AuthController::class, 'logout']);
+
+    Route::post('/carts',[CartController::class, 'store']);
+    Route::put('/carts/{cart_id}',[CartController::class, 'update']);
+    Route::delete('/carts/{cart_id}',[CartController::class, 'destroy']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
