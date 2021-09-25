@@ -1,64 +1,209 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Backend -  Cart System API Project
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
+This is a Cart Systems API that will help to authenticate different users by giving them a unique key or token to access the system.
+The user will be able to perform the CRUD functionalities which are Create, Read, Update, Delete.
+And a loging system will be implemented in order to allow only registered user to perfom certains tasks.
+Every time a user log into the system a token or key will be generated automatically to verify the authenticity. 
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stac(Dependencies)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Installing Dependencies for the Backend
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel Framework 8.61.0**
+- **phpMyAdmin** as our database of choice
 
-## Learning Laravel
+## Main Files: Project Structure
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+├── README.md
+├── app
+|     | ├── Console
+|     | ├── Exceptions
+|     | ├── Http
+|     |       | ├── Controllers
+|     |                 |     | ├── **AuthController**.php \*\*\_ authentication
+|     |       |         |     | ├── Controller.php
+|     |       |         |     | ├── **CartController**.php  \*\*\_ CRUD functionalities.
+|     | ├── Models
+├──Bootstrap 
+├── database
+|     ├── migrations
+├── public
+├── resources
+├── routes
+|     | ├── **api.php**.py \*\*\_ the main driver of the app.
+├── tests
+├── vendor
+├──.editorconfig
+├──.env
+├──.env.example 
+├── .gitattributes
+├── .gitignore
+├── .styleci.yml
+├── artisan
+├── composer.json
+├── composer.lock
+├── package.json
+├── phpunit.xml
+├── README.md
+├──server.php
+├──webpack.mix.js
+|**
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Running the server**
+In the backend directory, execute:
 
-## Laravel Sponsors
+```
+php artisan serve
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## API
 
-### Premium Partners
+#### REGISTER AND LOGIN
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+POST `/api/register` Register to the API application
 
-## Contributing
+Request parameters: {name:string, email:string, password:string, confirm_password:string}
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Example response:
 
-## Code of Conduct
+```
+{
+    "user": {
+        "name": "Fatuma",
+        "email": "fatuma@gmail.com",
+        "updated_at": "2021-09-25T15:53:02.000000Z",
+        "created_at": "2021-09-25T15:53:02.000000Z",
+        "id": 3
+    },
+    "token": "9|8kNcxk7fip9V00I80PKoeZDbg0oApinnUsddBPpv"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+POST `/api/login` Login to the API application
 
-## Security Vulnerabilities
+Request parameters: {email:string, password:string}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Example response:
 
-## License
+```
+{
+    "user": {
+        "id": 2,
+        "name": "Kyria",
+        "email": "kyria@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2021-09-25T08:40:18.000000Z",
+        "updated_at": "2021-09-25T08:40:18.000000Z"
+    },
+    "token": "8|PB5MrH5cwo7SvWoi8qBvWjUq5lGVnA77NAsIhcRg"
+}
+```
+#### CRUD (Create, Read, Update, Delete)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+GET `\api\carts` Fetches all available carts
+
+Request parameters: none
+
+Example response:
+
+```
+{
+   {
+        "id": 1,
+        "name": "Cart One",
+        "slug": "cart-one",
+        "description": "This is cart one",
+        "price": "899.99",
+        "created_at": "2021-09-24T19:52:06.000000Z",
+        "updated_at": "2021-09-24T20:44:23.000000Z"
+    },
+}
+```
+
+GET `/api/carts/<cart_id>` Fetches a specific cart
+
+Request arguments: cart_id:int
+
+Example response:
+
+```
+ {
+    "id": 2,
+    "name": "Cart Two",
+    "slug": "cart-two",
+    "description": "This is cart two",
+    "price": "499.99",
+    "created_at": "2021-09-24T20:18:33.000000Z",
+    "updated_at": "2021-09-24T20:18:33.000000Z"
+}
+
+```
+
+DELETE `/api/carts/<cart_id>` Delete an existing cart from the repository of available carts
+
+Request arguments: cart_id:int
+
+Example response:
+
+```
+{
+    "deleted": 1,
+    "success": true
+}
+```
+
+POST `/api/carts` Add a new cart to the repository of available carts
+
+Request body: {name:string, slug:string, description:string, price:decimal}
+
+Example response:
+
+```
+{
+  "created": 3,
+  "success": true
+}
+
+```
+
+PUT `/api/carts/<cart_id>` modify an existing cart to the repository of available carts
+
+Request body: {name:string, slug:string, description:string, price:decimal}
+
+Example response:
+
+```
+{
+    "updated": {
+        "id": 4,
+        "name": "Cart fOUR",
+        "slug": "cart-two",
+        "description": "This is cart two",
+        "price": "499.99",
+        "created_at": "2021-09-24T22:37:49.000000Z",
+        "updated_at": "2021-09-25T11:06:08.000000Z"
+    },
+    "success": true
+}
+
+
+### LOGGING OUT
+
+```
+
+LOGOUT `/api/<logout>` logging out of the API application
+
+Example response:
+
+```
+{
+        "message": "Logged out",
+     
+},
+
+```
+
