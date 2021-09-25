@@ -62,7 +62,7 @@ php artisan serve
 
 ## API
 
-### LOGIN
+#### LOGIN
 
 POST `/api/register` Register to the API application
 
@@ -100,7 +100,7 @@ Example response:
     "token": "8|PB5MrH5cwo7SvWoi8qBvWjUq5lGVnA77NAsIhcRg"
 }
 ```
-### CRUD (Create, Read, Update, Delete)
+#### CRUD (Create, Read, Update, Delete)
 
 GET `\api\carts` Fetches all available carts
 
