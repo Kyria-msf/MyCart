@@ -23,9 +23,9 @@ Every time a user login a token or key will be generated automatically to verify
 |     | ├── Exceptions
 |     | ├── Http
 |     |       | ├── Controllers
-|     |                 |     | ├── **AuthController**.php \*\*\_ the main driver of the app.
+|     |                 |     | ├── **AuthController**.php \*\*\_ authentication.
 |     |       |         |     | ├── Controller.php
-|     |       |         |     | ├── **ProductController**.php  \*\*\_ the main driver of the app.
+|     |       |         |     | ├── **ProductController**.php  \*\*\_ CRUD functionalities.
 |     | ├── Models
 ├──Bootstrap 
 ├── database
