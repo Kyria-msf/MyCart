@@ -62,7 +62,7 @@ php artisan serve
 
 ## API
 
-#### LOGIN
+#### REGISTER AND LOGIN
 
 POST `/api/register` Register to the API application
 
